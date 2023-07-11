@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct WeatherRequest: DataRequest {
+struct CurrentWeatherRequest: DataRequest {
     private let apiKey: String = "052498d28e3fd8ab933bfb1b9b183e90"
     
     var url: String {
@@ -22,28 +22,28 @@ struct WeatherRequest: DataRequest {
     
     var queryItems: [String : String] {
         return [
-            "lat": "33.44",
-            "lon": "-94.04",
+            "lat": "55.33",
+            "lon": "86.08",
+            "lang": "ru",
             "appid": apiKey
         ]
     }
     
-    func decode(_ data: Data) throws -> WeatherResponse {
+    func decode(_ data: Data) throws -> CurrentWeatherResponse {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         decoder.dateDecodingStrategy = .secondsSince1970
-        let response = try decoder.decode(WeatherResponse.self, from: data)
+        let response = try decoder.decode(CurrentWeatherResponse.self, from: data)
         return response
     }
 }
 
-struct WeatherResponse: Decodable {
+struct CurrentWeatherResponse: Decodable {
     let timezone: String
-    let current: WeatherReport
-//    let daily: [WeatherReport]
+    let current: CurrentWeatherReport
 }
 
-struct WeatherReport: Decodable {
+struct CurrentWeatherReport: Decodable {
     let dt: Date
     let sunrise: Date
     let sunset: Date

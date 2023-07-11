@@ -20,7 +20,10 @@ struct MainView: View {
                 case .loading:
                     Text("Грузим-работаем")
                 case .success(let weatherResponse):
-                    Text(weatherResponse.current.weather.first?.description ?? "")
+                    VStack {
+                        Text(weatherResponse.timezone)
+                        Text(weatherResponse.current.weather.first?.description ?? "")
+                    }
                 }
                 Button {
                     viewModel.fetchWeather()
