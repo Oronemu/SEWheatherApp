@@ -8,10 +8,34 @@
 import SwiftUI
 
 struct ForecastView: View {
+    
+    @StateObject var viewModel: ForecastViewModel = .init(networkService: DefaultNetworkService())
+    
     var body: some View {
         NavigationView {
             VStack {
-                Text("Данные")
+                switch viewModel.currentState {
+                case .idle:
+                    Text("Стоим")
+                case .loading:
+                    Text("Грузим-работаем")
+                case .success(let weatherResponse):
+                    VStack {
+                        ScrollView {
+                            ForEach(weatherResponse.daily, id: \.dt) { dayWeather in
+                                VStack {
+                                    Text(dayWeather.weather.first?.main ?? "")
+                                    Text(dayWeather.weather.first?.description ?? "")
+                                }
+                            }
+                        }
+                    }
+                }
+                Button {
+                    viewModel.fetchWeather()
+                } label: {
+                    Text("Click me")
+                }
             }
             .navigationTitle("Прогноз на неделю")
         }

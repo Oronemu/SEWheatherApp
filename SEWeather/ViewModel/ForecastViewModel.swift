@@ -1,5 +1,5 @@
 //
-//  da.swift
+//  ForecastViewModel.swift
 //  SEWeather
 //
 //  Created by Иван Ровков on 12.07.2023.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-class WeatherViewModel: ObservableObject {
+class ForecastViewModel: ObservableObject {
     
     private let networkService: NetworkService
     
@@ -20,12 +20,12 @@ class WeatherViewModel: ObservableObject {
     enum State {
         case idle
         case loading
-        case success(CurrentWeatherResponse)
+        case success(ForecastWeatherResponse)
     }
     
     func fetchWeather() {
         self.currentState = .loading
-        let request = CurrentWeatherRequest()
+        let request = ForecastWeatherRequest()
         networkService.request(request) { result in
             switch result {
             case .success(let response):

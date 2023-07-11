@@ -24,6 +24,7 @@ struct CurrentWeatherRequest: DataRequest {
         return [
             "lat": "55.33",
             "lon": "86.08",
+            "exclude": "hourly,daily",
             "lang": "ru",
             "appid": apiKey
         ]
