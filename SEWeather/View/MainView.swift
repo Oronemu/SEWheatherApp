@@ -8,10 +8,25 @@
 import SwiftUI
 
 struct MainView: View {
+    
+    @StateObject var viewModel: WeatherViewModel = .init(networkService: DefaultNetworkService())
+    
     var body: some View {
         NavigationView {
             VStack {
-                Text("Данные")
+                switch viewModel.currentState {
+                case .idle:
+                    Text("Стоим")
+                case .loading:
+                    Text("Грузим-работаем")
+                case .success(let weatherResponse):
+                    Text(weatherResponse.current.weather.first?.description ?? "")
+                }
+                Button {
+                    viewModel.fetchWeather()
+                } label: {
+                    Text("Click me")
+                }
             }
             .navigationTitle("Прогноз на сегодня")
         }
