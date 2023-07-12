@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ErrorView: View {
     var error: String
+    @State var isHapticWorked: Bool = false
     
     var body: some View {
         VStack {
@@ -22,6 +23,12 @@ struct ErrorView: View {
                 .font(.system(size: 25))
                 .multilineTextAlignment(.center)
                 .foregroundColor(.white)
+        }
+        .onAppear {
+            if !isHapticWorked {
+                Haptic.shared.notify(.error)
+                self.isHapticWorked.toggle()
+            }
         }
     }
 }

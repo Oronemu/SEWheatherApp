@@ -13,6 +13,7 @@
 		98B607AC2A5E24AF00DECFFE /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B607AB2A5E24AF00DECFFE /* ErrorView.swift */; };
 		98B607AE2A5E38FB00DECFFE /* CircullarLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B607AD2A5E38FA00DECFFE /* CircullarLoadingView.swift */; };
 		98B607B22A5E414C00DECFFE /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B607B12A5E414C00DECFFE /* DateExtensions.swift */; };
+		98B607B42A5E4A8200DECFFE /* Haptic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B607B32A5E4A8200DECFFE /* Haptic.swift */; };
 		98D411172A5DAA9A00BCEE1F /* SEWeatherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D411162A5DAA9A00BCEE1F /* SEWeatherApp.swift */; };
 		98D411192A5DAA9A00BCEE1F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D411182A5DAA9A00BCEE1F /* ContentView.swift */; };
 		98D4111B2A5DAA9D00BCEE1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 98D4111A2A5DAA9D00BCEE1F /* Assets.xcassets */; };
@@ -35,6 +36,7 @@
 		98B607AB2A5E24AF00DECFFE /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		98B607AD2A5E38FA00DECFFE /* CircullarLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircullarLoadingView.swift; sourceTree = "<group>"; };
 		98B607B12A5E414C00DECFFE /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
+		98B607B32A5E4A8200DECFFE /* Haptic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptic.swift; sourceTree = "<group>"; };
 		98D411132A5DAA9A00BCEE1F /* SEWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SEWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98D411162A5DAA9A00BCEE1F /* SEWeatherApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SEWeatherApp.swift; sourceTree = "<group>"; };
 		98D411182A5DAA9A00BCEE1F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				98B607B02A5E413A00DECFFE /* Extensions */,
+				98B607B32A5E4A8200DECFFE /* Haptic.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -267,6 +270,7 @@
 				98D411232A5DAA9D00BCEE1F /* SEWeather.xcdatamodeld in Sources */,
 				98D4113C2A5DC5B700BCEE1F /* NetworkServiceProtocol.swift in Sources */,
 				98B607AC2A5E24AF00DECFFE /* ErrorView.swift in Sources */,
+				98B607B42A5E4A8200DECFFE /* Haptic.swift in Sources */,
 				98D411322A5DB12300BCEE1F /* MainView.swift in Sources */,
 				98D411172A5DAA9A00BCEE1F /* SEWeatherApp.swift in Sources */,
 				98B607A62A5E057C00DECFFE /* ForecastWeatherRequest.swift in Sources */,
