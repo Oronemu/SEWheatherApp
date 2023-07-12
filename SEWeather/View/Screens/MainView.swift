@@ -10,7 +10,7 @@ import MapKit
 
 struct MainView: View {
     
-    @StateObject var viewModel: CurrentWeatherViewModel = .init(networkService: DefaultNetworkService())
+    @StateObject var viewModel: CurrentWeatherViewModel = .init(networkService: DefaultNetworkService(), locationService: CoreLocationService())
     
     var body: some View {
         NavigationView {
@@ -22,7 +22,7 @@ struct MainView: View {
                 GeometryReader { geometry in
                     ScrollView(showsIndicators: false) {
                         VStack {
-                            switch viewModel.currentState {
+                            switch viewModel.networkState {
                             case .idle:
                                 EmptyView()
                             case .loading:
@@ -54,7 +54,7 @@ struct DetailWeatherView: View {
     
     var body: some View {
         VStack {
-            Text("Кемерово")
+            Text("Kemerovo")
                 .font(.system(size: 40, weight: .medium))
                 .foregroundColor(.white)
             Text(weatherInfo.timezone)
@@ -75,8 +75,8 @@ struct DetailWeatherView: View {
                 .foregroundColor(.white)
             }
             
-            Text("Похоже на улице прохладно, рекомендуем одеться потеплее, чтобы не замерзнуть 😬")
-                .multilineTextAlignment(.center)
+            Text("It seems to be cool outside, it is recommended to dress warmly so as not to freeze")
+                .multilineTextAlignment(.leading)
                 .foregroundColor(.white)
                 .font(.system(size: 20))
                 .frame(maxWidth: .infinity)
@@ -86,15 +86,15 @@ struct DetailWeatherView: View {
 
             HStack {
                 VStack(alignment: .leading) {
-                    WeatherDetailCell("wind", title: "Ветер", value: "\(weatherInfo.current.windSpeed) м/c")
-                    WeatherDetailCell("barometer", title: "Давление", value: "\(weatherInfo.current.humidity) мм. рт. ст.")
+                    WeatherDetailCell("wind", title: "Wind", value: "\(weatherInfo.current.windSpeed) mps")
+                    WeatherDetailCell("barometer", title: "Pressure", value: "\(weatherInfo.current.humidity) mmHg")
                 }
                 
                 Spacer()
                 
                 VStack(alignment: .leading) {
-                    WeatherDetailCell("humidity.fill", title: "Влажность", value: "\(weatherInfo.current.humidity) м/c")
-                    WeatherDetailCell("sun.max.fill", title: "УФ-Индекс", value: "\(weatherInfo.current.uvi)")
+                    WeatherDetailCell("humidity.fill", title: "Humidity", value: "\(weatherInfo.current.humidity)%")
+                    WeatherDetailCell("sun.max.fill", title: "UV Index", value: "\(weatherInfo.current.uvi)")
                 }
             }
             .foregroundColor(.white)

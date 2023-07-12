@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ForecastView: View {
     
-    @StateObject var viewModel: ForecastViewModel = .init(networkService: DefaultNetworkService())
+    @StateObject var viewModel: ForecastViewModel = .init(networkService: DefaultNetworkService(), locationService: CoreLocationService())
     
     var body: some View {
         NavigationView {
@@ -21,7 +21,7 @@ struct ForecastView: View {
                 GeometryReader { geometry in
                     ScrollView(showsIndicators: false) {
                         LazyVStack {
-                            switch viewModel.currentState {
+                            switch viewModel.networkState {
                             case .idle:
                                 EmptyView()
                             case .loading:

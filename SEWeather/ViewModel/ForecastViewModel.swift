@@ -10,14 +10,25 @@ import Foundation
 class ForecastViewModel: ObservableObject {
     
     private let networkService: NetworkService
+    private var locationService: CoreLocationService
     
-    init(networkService: NetworkService) {
+    init(networkService: NetworkService, locationService: CoreLocationService) {
         self.networkService = networkService
+        self.locationService = locationService
+        self.locationService.completion = { result in
+            switch result {
+            case .success(let status):
+                self.locationState = status
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
     
-    @Published var currentState: State = .idle
-    
-    enum State {
+    @Published var networkState: NetworkServiceState = .idle
+    @Published var locationState: LocationServiceStatus?
+
+    enum NetworkServiceState {
         case idle
         case loading
         case success(ForecastWeatherResponse)
@@ -25,17 +36,17 @@ class ForecastViewModel: ObservableObject {
     }
     
     func fetchWeather() {
-        self.currentState = .loading
+        self.networkState = .loading
         let request = ForecastWeatherRequest()
         networkService.request(request) { result in
             switch result {
             case .success(let response):
                 DispatchQueue.main.async {
-                    self.currentState = .success(response)
+                    self.networkState = .success(response)
                 }
             case .failure(let error):
                 DispatchQueue.main.async {
-                    self.currentState = .error(error.localizedDescription)
+                    self.networkState = .error(error.localizedDescription)
                 }
             }
         }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9868AF992A5EB34100DC298B /* OnBoardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9868AF982A5EB34100DC298B /* OnBoardingViewModel.swift */; };
 		98B607A42A5DF2A800DECFFE /* CurrentWeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B607A32A5DF2A800DECFFE /* CurrentWeatherViewModel.swift */; };
 		98B607A62A5E057C00DECFFE /* ForecastWeatherRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B607A52A5E057C00DECFFE /* ForecastWeatherRequest.swift */; };
 		98B607A82A5E093300DECFFE /* ForecastViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B607A72A5E093300DECFFE /* ForecastViewModel.swift */; };
@@ -14,6 +15,9 @@
 		98B607AE2A5E38FB00DECFFE /* CircullarLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B607AD2A5E38FA00DECFFE /* CircullarLoadingView.swift */; };
 		98B607B22A5E414C00DECFFE /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B607B12A5E414C00DECFFE /* DateExtensions.swift */; };
 		98B607B42A5E4A8200DECFFE /* Haptic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B607B32A5E4A8200DECFFE /* Haptic.swift */; };
+		98CB6CA52A5E9E3C00F423C3 /* LocationServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CB6CA42A5E9E3C00F423C3 /* LocationServiceProtocol.swift */; };
+		98CB6CA72A5E9F4300F423C3 /* CoreLocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CB6CA62A5E9F4300F423C3 /* CoreLocationService.swift */; };
+		98CB6CAB2A5EA78200F423C3 /* OnBoardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CB6CAA2A5EA78200F423C3 /* OnBoardingView.swift */; };
 		98D411172A5DAA9A00BCEE1F /* SEWeatherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D411162A5DAA9A00BCEE1F /* SEWeatherApp.swift */; };
 		98D411192A5DAA9A00BCEE1F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D411182A5DAA9A00BCEE1F /* ContentView.swift */; };
 		98D4111B2A5DAA9D00BCEE1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 98D4111A2A5DAA9D00BCEE1F /* Assets.xcassets */; };
@@ -30,6 +34,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9868AF982A5EB34100DC298B /* OnBoardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewModel.swift; sourceTree = "<group>"; };
 		98B607A32A5DF2A800DECFFE /* CurrentWeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherViewModel.swift; sourceTree = "<group>"; };
 		98B607A52A5E057C00DECFFE /* ForecastWeatherRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastWeatherRequest.swift; sourceTree = "<group>"; };
 		98B607A72A5E093300DECFFE /* ForecastViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastViewModel.swift; sourceTree = "<group>"; };
@@ -37,6 +42,10 @@
 		98B607AD2A5E38FA00DECFFE /* CircullarLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircullarLoadingView.swift; sourceTree = "<group>"; };
 		98B607B12A5E414C00DECFFE /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		98B607B32A5E4A8200DECFFE /* Haptic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptic.swift; sourceTree = "<group>"; };
+		98CB6CA42A5E9E3C00F423C3 /* LocationServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationServiceProtocol.swift; sourceTree = "<group>"; };
+		98CB6CA62A5E9F4300F423C3 /* CoreLocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreLocationService.swift; sourceTree = "<group>"; };
+		98CB6CA82A5EA21C00F423C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		98CB6CAA2A5EA78200F423C3 /* OnBoardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingView.swift; sourceTree = "<group>"; };
 		98D411132A5DAA9A00BCEE1F /* SEWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SEWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98D411162A5DAA9A00BCEE1F /* SEWeatherApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SEWeatherApp.swift; sourceTree = "<group>"; };
 		98D411182A5DAA9A00BCEE1F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -67,6 +76,7 @@
 		98B607A92A5E248A00DECFFE /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				98CB6CAA2A5EA78200F423C3 /* OnBoardingView.swift */,
 				98D411182A5DAA9A00BCEE1F /* ContentView.swift */,
 				98D411312A5DB12300BCEE1F /* MainView.swift */,
 				98D411332A5DB28200BCEE1F /* ForecastView.swift */,
@@ -100,6 +110,15 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		98CB6CA32A5E9E2A00F423C3 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				98CB6CA42A5E9E3C00F423C3 /* LocationServiceProtocol.swift */,
+				98CB6CA62A5E9F4300F423C3 /* CoreLocationService.swift */,
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
 		98D4110A2A5DAA9A00BCEE1F = {
 			isa = PBXGroup;
 			children = (
@@ -119,6 +138,7 @@
 		98D411152A5DAA9A00BCEE1F /* SEWeather */ = {
 			isa = PBXGroup;
 			children = (
+				98CB6CA82A5EA21C00F423C3 /* Info.plist */,
 				98D411162A5DAA9A00BCEE1F /* SEWeatherApp.swift */,
 				98D4111F2A5DAA9D00BCEE1F /* Persistence.swift */,
 				98D411212A5DAA9D00BCEE1F /* SEWeather.xcdatamodeld */,
@@ -155,6 +175,7 @@
 			children = (
 				98B607A32A5DF2A800DECFFE /* CurrentWeatherViewModel.swift */,
 				98B607A72A5E093300DECFFE /* ForecastViewModel.swift */,
+				9868AF982A5EB34100DC298B /* OnBoardingViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -171,6 +192,7 @@
 		98D411352A5DC24600BCEE1F /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				98CB6CA32A5E9E2A00F423C3 /* Location */,
 				98D411362A5DC25600BCEE1F /* Networking */,
 			);
 			path = Services;
@@ -224,12 +246,11 @@
 			};
 			buildConfigurationList = 98D4110E2A5DAA9A00BCEE1F /* Build configuration list for PBXProject "SEWeather" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = ru;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
-				ru,
 			);
 			mainGroup = 98D4110A2A5DAA9A00BCEE1F;
 			productRefGroup = 98D411142A5DAA9A00BCEE1F /* Products */;
@@ -261,20 +282,24 @@
 				98D4113A2A5DC45D00BCEE1F /* HTTPMethods.swift in Sources */,
 				98B607B22A5E414C00DECFFE /* DateExtensions.swift in Sources */,
 				98D411382A5DC27700BCEE1F /* DataRequestProtocol.swift in Sources */,
+				98CB6CA72A5E9F4300F423C3 /* CoreLocationService.swift in Sources */,
 				98D411202A5DAA9D00BCEE1F /* Persistence.swift in Sources */,
 				98B607A82A5E093300DECFFE /* ForecastViewModel.swift in Sources */,
 				98D411192A5DAA9A00BCEE1F /* ContentView.swift in Sources */,
+				9868AF992A5EB34100DC298B /* OnBoardingViewModel.swift in Sources */,
 				98B607A42A5DF2A800DECFFE /* CurrentWeatherViewModel.swift in Sources */,
 				98D4113E2A5DC77600BCEE1F /* DefaultNetworkService.swift in Sources */,
 				98D411422A5DDE7600BCEE1F /* CurrentWeatherRequest.swift in Sources */,
 				98D411232A5DAA9D00BCEE1F /* SEWeather.xcdatamodeld in Sources */,
 				98D4113C2A5DC5B700BCEE1F /* NetworkServiceProtocol.swift in Sources */,
 				98B607AC2A5E24AF00DECFFE /* ErrorView.swift in Sources */,
+				98CB6CAB2A5EA78200F423C3 /* OnBoardingView.swift in Sources */,
 				98B607B42A5E4A8200DECFFE /* Haptic.swift in Sources */,
 				98D411322A5DB12300BCEE1F /* MainView.swift in Sources */,
 				98D411172A5DAA9A00BCEE1F /* SEWeatherApp.swift in Sources */,
 				98B607A62A5E057C00DECFFE /* ForecastWeatherRequest.swift in Sources */,
 				98D411342A5DB28200BCEE1F /* ForecastView.swift in Sources */,
+				98CB6CA52A5E9E3C00F423C3 /* LocationServiceProtocol.swift in Sources */,
 				98B607AE2A5E38FB00DECFFE /* CircullarLoadingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -412,8 +437,12 @@
 				DEVELOPMENT_TEAM = Q4F9FYJ2D7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SEWeather/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SEWheaterApp;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.weather";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = PRIVET;
+				INFOPLIST_KEY_NSLocationUsageDescription = PRIVET;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = PRIVET;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -447,8 +476,12 @@
 				DEVELOPMENT_TEAM = Q4F9FYJ2D7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SEWeather/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SEWheaterApp;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.weather";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = PRIVET;
+				INFOPLIST_KEY_NSLocationUsageDescription = PRIVET;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = PRIVET;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

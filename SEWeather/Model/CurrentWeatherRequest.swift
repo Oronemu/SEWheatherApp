@@ -9,6 +9,16 @@ import Foundation
 
 struct CurrentWeatherRequest: DataRequest {
     private let apiKey: String = "052498d28e3fd8ab933bfb1b9b183e90"
+    private var defaultQueryItems: [String: String] {
+        get {
+            return [
+                "units": "metric",
+                "exclude": "daily",
+                "appid": apiKey
+            ]
+        }
+        set {}
+    }
     
     var url: String {
         let baseURL: String = "https://api.openweathermap.org"
@@ -21,14 +31,11 @@ struct CurrentWeatherRequest: DataRequest {
     }
     
     var queryItems: [String : String] {
-        return [
-            "lat": "55.33",
-            "lon": "86.08",
-            "units": "metric",
-            "exclude": "hourly,daily",
-            "lang": "ru",
-            "appid": apiKey
-        ]
+        return defaultQueryItems
+    }
+    
+    mutating func addQueryItem(name: String, value: String) {
+        defaultQueryItems[name] = value
     }
     
     func decode(_ data: Data) throws -> CurrentWeatherResponse {

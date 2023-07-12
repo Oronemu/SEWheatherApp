@@ -10,11 +10,16 @@ import SwiftUI
 @main
 struct SEWeatherApp: App {
     let persistenceController = PersistenceController.shared
-
+    @AppStorage("onBoardingIsShowed") private var onBoardingIsShowed = false
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            if onBoardingIsShowed {
+                ContentView()
+                    .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            } else {
+                OnBoardingView()
+            }
         }
     }
 }

@@ -26,7 +26,6 @@ struct ForecastWeatherRequest: DataRequest {
             "lon": "86.08",
             "units": "metric",
             "exclude": "hourly",
-            "lang": "ru",
             "appid": apiKey
         ]
     }
