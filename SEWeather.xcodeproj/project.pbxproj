@@ -31,6 +31,7 @@
 		98D4113C2A5DC5B700BCEE1F /* NetworkServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D4113B2A5DC5B700BCEE1F /* NetworkServiceProtocol.swift */; };
 		98D4113E2A5DC77600BCEE1F /* DefaultNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D4113D2A5DC77600BCEE1F /* DefaultNetworkService.swift */; };
 		98D411422A5DDE7600BCEE1F /* CurrentWeatherRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D411412A5DDE7600BCEE1F /* CurrentWeatherRequest.swift */; };
+		98F32FE72A5F629600DD10E5 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F32FE62A5F629600DD10E5 /* Config.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		98D4113B2A5DC5B700BCEE1F /* NetworkServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceProtocol.swift; sourceTree = "<group>"; };
 		98D4113D2A5DC77600BCEE1F /* DefaultNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultNetworkService.swift; sourceTree = "<group>"; };
 		98D411412A5DDE7600BCEE1F /* CurrentWeatherRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherRequest.swift; sourceTree = "<group>"; };
+		98F32FE62A5F629600DD10E5 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 			children = (
 				98B607B02A5E413A00DECFFE /* Extensions */,
 				98B607B32A5E4A8200DECFFE /* Haptic.swift */,
+				98F32FE62A5F629600DD10E5 /* Config.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -297,6 +300,7 @@
 				98B607B42A5E4A8200DECFFE /* Haptic.swift in Sources */,
 				98D411322A5DB12300BCEE1F /* MainView.swift in Sources */,
 				98D411172A5DAA9A00BCEE1F /* SEWeatherApp.swift in Sources */,
+				98F32FE72A5F629600DD10E5 /* Config.swift in Sources */,
 				98B607A62A5E057C00DECFFE /* ForecastWeatherRequest.swift in Sources */,
 				98D411342A5DB28200BCEE1F /* ForecastView.swift in Sources */,
 				98CB6CA52A5E9E3C00F423C3 /* LocationServiceProtocol.swift in Sources */,

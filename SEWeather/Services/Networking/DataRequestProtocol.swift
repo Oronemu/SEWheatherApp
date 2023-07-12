@@ -13,7 +13,7 @@ protocol DataRequest {
     var url: String { get }
     var method: HTTPMethod { get }
     var headers: [String: String] { get }
-    var queryItems: [String: String] { get }
+    var queryItems: [String: String] { get set }
     
     func decode(_ data: Data) throws -> Response
 }

@@ -7,19 +7,7 @@
 
 import Foundation
 
-struct CurrentWeatherRequest: DataRequest {
-    private let apiKey: String = "052498d28e3fd8ab933bfb1b9b183e90"
-    private var defaultQueryItems: [String: String] {
-        get {
-            return [
-                "units": "metric",
-                "exclude": "daily",
-                "appid": apiKey
-            ]
-        }
-        set {}
-    }
-    
+struct CurrentWeatherRequest: DataRequest {    
     var url: String {
         let baseURL: String = "https://api.openweathermap.org"
         let path: String = "/data/3.0/onecall"
@@ -30,13 +18,11 @@ struct CurrentWeatherRequest: DataRequest {
         return .GET
     }
     
-    var queryItems: [String : String] {
-        return defaultQueryItems
-    }
-    
-    mutating func addQueryItem(name: String, value: String) {
-        defaultQueryItems[name] = value
-    }
+    var queryItems: [String : String] =  [
+        "units": "metric",
+        "exclude": "hourly",
+        "appid": Config.apikey
+    ]
     
     func decode(_ data: Data) throws -> CurrentWeatherResponse {
         let decoder = JSONDecoder()

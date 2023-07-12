@@ -40,10 +40,11 @@ class CurrentWeatherViewModel: ObservableObject {
         var request = CurrentWeatherRequest()
         self.locationService.checkIfLocationServiceIsEnabled()
         if case .authorized(let location) = self.locationState {
-            request.addQueryItem(name: "lat", value: "\(location?.coordinate.latitude)")
-            request.addQueryItem(name: "lot", value: "\(location?.coordinate.longitude)")
+            guard let location = location?.coordinate else { return }
+            request.queryItems["lat"] = "\(location.latitude)"
+            request.queryItems["lon"] = "\(location.longitude)"
         }
-        request.addQueryItem(name: "dwa", value: "dwada")
+        print(request.queryItems)
         networkService.request(request) { result in
             switch result {
             case .success(let response):

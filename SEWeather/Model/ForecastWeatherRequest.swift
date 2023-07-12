@@ -20,15 +20,11 @@ struct ForecastWeatherRequest: DataRequest {
         return .GET
     }
     
-    var queryItems: [String : String] {
-        return [
-            "lat": "55.33",
-            "lon": "86.08",
-            "units": "metric",
-            "exclude": "hourly",
-            "appid": apiKey
-        ]
-    }
+    var queryItems: [String : String] =  [
+        "units": "metric",
+        "exclude": "hourly",
+        "appid": Config.apikey
+    ]
     
     func decode(_ data: Data) throws -> ForecastWeatherResponse {
         let decoder = JSONDecoder()

@@ -37,7 +37,13 @@ class ForecastViewModel: ObservableObject {
     
     func fetchWeather() {
         self.networkState = .loading
-        let request = ForecastWeatherRequest()
+        var request = ForecastWeatherRequest()
+        self.locationService.checkIfLocationServiceIsEnabled()
+        if case .authorized(let location) = self.locationState {
+            guard let location = location?.coordinate else { return }
+            request.queryItems["lat"] = "\(location.latitude)"
+            request.queryItems["lon"] = "\(location.longitude)"
+        }
         networkService.request(request) { result in
             switch result {
             case .success(let response):
