@@ -24,6 +24,7 @@ struct CurrentWeatherRequest: DataRequest {
         return [
             "lat": "55.33",
             "lon": "86.08",
+            "units": "metric",
             "exclude": "hourly,daily",
             "lang": "ru",
             "appid": apiKey
@@ -49,6 +50,8 @@ struct CurrentWeatherReport: Decodable {
     let sunrise: Date
     let sunset: Date
     let temp: Double
+    let humidity: Int
+    let uvi: Double
     let feelsLike: Double
     let pressure: Int
     let windSpeed: Double

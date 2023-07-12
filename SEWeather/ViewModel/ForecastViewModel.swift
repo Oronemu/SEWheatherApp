@@ -21,6 +21,7 @@ class ForecastViewModel: ObservableObject {
         case idle
         case loading
         case success(ForecastWeatherResponse)
+        case error(String)
     }
     
     func fetchWeather() {
@@ -33,7 +34,9 @@ class ForecastViewModel: ObservableObject {
                     self.currentState = .success(response)
                 }
             case .failure(let error):
-                print(error.localizedDescription)
+                DispatchQueue.main.async {
+                    self.currentState = .error(error.localizedDescription)
+                }
             }
         }
     }

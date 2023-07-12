@@ -7,7 +7,7 @@
 
 import Foundation
 
-class WeatherViewModel: ObservableObject {
+class CurrentWeatherViewModel: ObservableObject {
     
     private let networkService: NetworkService
     
@@ -21,6 +21,7 @@ class WeatherViewModel: ObservableObject {
         case idle
         case loading
         case success(CurrentWeatherResponse)
+        case error(String)
     }
     
     func fetchWeather() {
@@ -33,7 +34,9 @@ class WeatherViewModel: ObservableObject {
                     self.currentState = .success(response)
                 }
             case .failure(let error):
-                print(error.localizedDescription)
+                DispatchQueue.main.async {
+                    self.currentState = .error(error.localizedDescription)
+                }
             }
         }
     }
