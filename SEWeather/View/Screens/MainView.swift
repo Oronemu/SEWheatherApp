@@ -30,34 +30,7 @@ struct MainView: View {
                                     .frame(width: geometry.size.width - 40)
                                     .frame(minHeight: geometry.size.height)
                             case .success(let currentWeather):
-                                VStack {
-                                    Text("\(currentWeather.name), \(currentWeather.sys.country)")
-                                        .font(.system(size: 40, weight: .medium))
-                                        .foregroundColor(.white)
-
-                                    HStack {
-                                        AsyncImage(withURL: "https://openweathermap.org/img/wn/\(currentWeather.weather.first?.icon ?? "")@2x.png")
-                                        VStack(alignment: .leading) {
-                                            Text("\(Int(currentWeather.main.temp))°C")
-                                                .font(.system(size: 60, weight: .medium))
-                                            Text(currentWeather.weather.first?.description ?? "")
-                                                .multilineTextAlignment(.leading)
-                                        }
-                                        .padding(.leading, 20)
-                                        .foregroundColor(.white)
-                                    }
-                                    
-                                    Text(viewModel.advice)
-                                        .multilineTextAlignment(.leading)
-                                        .foregroundColor(.white)
-                                        .font(.system(size: 20))
-                                        .frame(maxWidth: .infinity)
-                                        .padding(15)
-                                        .background(Color(.black).opacity(0.1))
-                                        .clipShape(RoundedRectangle(cornerRadius: 15))
-                                    
-                                    DetailWeatherView(weatherInfo: currentWeather)
-                                }
+                                WeatherView(currentWeather: currentWeather, viewModel: viewModel)
                             case .error(let error):
                                 ErrorView(error: error)
                                     .frame(width: geometry.size.width - 40)
@@ -75,9 +48,59 @@ struct MainView: View {
     }
 }
 
+struct WeatherView: View {
+    var currentWeather: CurrentWeather
+    var viewModel: CurrentWeatherViewModel
+
+    var body: some View {
+        VStack {
+            VStack {
+                VStack {
+                    Text("Current Location")
+                        .font(.system(size: 30))
+                    HStack {
+                        AsyncImage(withURL: "https://openweathermap.org/img/wn/\(currentWeather.weather.first?.icon ?? "")@2x.png")
+                        Text("\(currentWeather.name), \(currentWeather.sys.country)")
+                            .font(.system(size: 20))
+                    }
+                    .padding(.top, -20)
+                }
+
+                VStack(alignment: .center) {
+                    Text("\(Int(currentWeather.main.temp))°")
+                        .font(.system(size: 80, weight: .thin))
+                    Group {
+                        Text(currentWeather.weather.first?.description.capitalized ?? "")
+                        HStack {
+                            Text("Max: \(Int(currentWeather.main.tempMax))°")
+                            Text("Min: \(Int(currentWeather.main.tempMin))")
+                        }
+                    }
+                    .font(.system(size: 18, weight: .semibold))
+                }
+                .padding(.top, -15)
+            }
+            .foregroundColor(.white)
+            
+            Text(viewModel.advice)
+                .multilineTextAlignment(.leading)
+                .foregroundColor(.white)
+                .font(.system(size: 18))
+                .frame(maxWidth: .infinity)
+                .padding(10)
+                .background(Color(.black).opacity(0.1))
+                .clipShape(RoundedRectangle(cornerRadius: 15))
+            
+            DetailWeatherView(weatherInfo: currentWeather, viewModel: viewModel)
+                .padding(.top, -15)
+        }
+    }
+}
+
 struct DetailWeatherView: View {
     
     var weatherInfo: CurrentWeather
+    var viewModel: CurrentWeatherViewModel
     
     var body: some View {
         VStack {
@@ -91,16 +114,37 @@ struct DetailWeatherView: View {
                 
                 VStack(alignment: .leading) {
                     WeatherDetailCell("humidity.fill", title: "Humidity", value: "\(weatherInfo.main.humidity)%")
-                    WeatherDetailCell("thermometer.sun.fill", title: "Temperature", value: "\(Int(weatherInfo.main.tempMin))°C - \(Int(weatherInfo.main.tempMax))°C")
+                    WeatherDetailCell("thermometer.sun.fill", title: "Feels like", value: "\(Int(weatherInfo.main.feelsLike))°C")
                 }
             }
             .foregroundColor(.white)
             .padding(.top, 20)
             
-//            Map(coordinateRegion: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 55.33, longitude: 86.08), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))), interactionModes: [.all])
-//                .frame(height: 300)
-//                .clipShape(RoundedRectangle(cornerRadius: 15))
-//                .padding(.top, 20)
+            if case .authorized(let location) = viewModel.locationState {
+                VStack(alignment: .leading) {
+                    HStack {
+                        Group {
+                            Image(systemName: "location.fill")
+                            Text("Location")
+                        }
+                        .font(.system(size: 18, weight: .bold))
+                        .foregroundColor(.white)
+                        Spacer()
+                    }
+                    
+                    Map(coordinateRegion: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: location!.coordinate.latitude, longitude: location!.coordinate.longitude), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))), interactionModes: [.all])
+                        .frame(height: 300)
+                        .clipShape(RoundedRectangle(cornerRadius: 15))
+                    
+                    Text("lat: \(location!.coordinate.latitude), lot: \(location!.coordinate.longitude)")
+                        .foregroundColor(.white)
+                    
+                }
+                .padding(10)
+                .background(Color(.black).opacity(0.1))
+                .clipShape(RoundedRectangle(cornerRadius: 15))
+            }
+            
 
             Spacer()
         }
@@ -111,11 +155,10 @@ struct DetailWeatherView: View {
             Image(systemName: imageName)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(width: 40, height: 40)
+                .frame(width: 35, height: 35)
             VStack(alignment: .leading) {
                 Text(title)
-                    .bold()
-                    .font(.title3)
+                    .font(.system(size: 18, weight: .bold))
                 Text(value)
             }
             .lineLimit(1)

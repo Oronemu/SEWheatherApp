@@ -21,7 +21,7 @@ struct AsyncImage: View {
             .renderingMode(.original)
             .resizable()
             .aspectRatio(contentMode: .fit)
-            .frame(width: 150, height: 150)
+            .frame(width: 30, height: 30)
             .onReceive(imageLoader.didChange) { data in
                 self.image = UIImage(data: data) ?? UIImage()
             }

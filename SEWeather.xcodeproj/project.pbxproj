@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9868AF992A5EB34100DC298B /* OnBoardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9868AF982A5EB34100DC298B /* OnBoardingViewModel.swift */; };
+		988A7E1E2A60949100E44C02 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988A7E1D2A60949100E44C02 /* StringExtension.swift */; };
 		98B607A42A5DF2A800DECFFE /* CurrentWeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B607A32A5DF2A800DECFFE /* CurrentWeatherViewModel.swift */; };
 		98B607A62A5E057C00DECFFE /* ForecastWeatherRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B607A52A5E057C00DECFFE /* ForecastWeatherRequest.swift */; };
 		98B607A82A5E093300DECFFE /* ForecastViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B607A72A5E093300DECFFE /* ForecastViewModel.swift */; };
@@ -38,6 +39,7 @@
 
 /* Begin PBXFileReference section */
 		9868AF982A5EB34100DC298B /* OnBoardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewModel.swift; sourceTree = "<group>"; };
+		988A7E1D2A60949100E44C02 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StringExtension.swift; path = ../../../../../../Downloads/StringExtension.swift; sourceTree = "<group>"; };
 		98B607A32A5DF2A800DECFFE /* CurrentWeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherViewModel.swift; sourceTree = "<group>"; };
 		98B607A52A5E057C00DECFFE /* ForecastWeatherRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastWeatherRequest.swift; sourceTree = "<group>"; };
 		98B607A72A5E093300DECFFE /* ForecastViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastViewModel.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				98B607B12A5E414C00DECFFE /* DateExtensions.swift */,
+				988A7E1D2A60949100E44C02 /* StringExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -312,6 +315,7 @@
 				98B607A62A5E057C00DECFFE /* ForecastWeatherRequest.swift in Sources */,
 				98D411342A5DB28200BCEE1F /* ForecastView.swift in Sources */,
 				98CB6CA52A5E9E3C00F423C3 /* LocationServiceProtocol.swift in Sources */,
+				988A7E1E2A60949100E44C02 /* StringExtension.swift in Sources */,
 				98B607AE2A5E38FB00DECFFE /* CircullarLoadingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

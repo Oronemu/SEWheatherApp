@@ -27,6 +27,12 @@ struct ContentView: View {
                 }
                 .tag(2)
         }
+        .onAppear {
+            let standardAppearance = UITabBarAppearance()
+            standardAppearance.configureWithTransparentBackground()
+            standardAppearance.backgroundEffect = UIBlurEffect(style: .systemUltraThinMaterial)
+            UITabBar.appearance().standardAppearance = standardAppearance
+        }
     }
 }
 
