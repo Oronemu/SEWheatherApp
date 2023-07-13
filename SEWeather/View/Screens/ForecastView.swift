@@ -49,7 +49,7 @@ struct ForecastView: View {
 
 struct DetailForecastView: View {
     
-    var forecastWeather: ForecastWeatherResponse
+    var forecastWeather: ForecastWeather
     
     var body: some View {
         VStack(spacing: 20) {

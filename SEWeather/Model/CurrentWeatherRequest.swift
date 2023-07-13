@@ -23,16 +23,16 @@ struct CurrentWeatherRequest: DataRequest {
         "appid": Config.apikey
     ]
     
-    func decode(_ data: Data) throws -> CurrentWeatherResponse {
+    func decode(_ data: Data) throws -> CurrentWeather {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         decoder.dateDecodingStrategy = .secondsSince1970
-        let response = try decoder.decode(CurrentWeatherResponse.self, from: data)
+        let response = try decoder.decode(CurrentWeather.self, from: data)
         return response
     }
 }
 
-struct CurrentWeatherResponse: Decodable {
+struct CurrentWeather: Decodable {
     let dt: Date
     let name: String
     let timezone: Int
@@ -43,6 +43,7 @@ struct CurrentWeatherResponse: Decodable {
 
     struct Main: Decodable {
         let temp: Double
+        let feelsLike: Double
         let tempMin: Double
         let tempMax: Double
         let pressure: Int
@@ -57,6 +58,8 @@ struct CurrentWeatherResponse: Decodable {
     
     struct Sys: Decodable {
         let country: String
+        let sunrinse: Date?
+        let sunset: Date?
     }
     
     struct Wind: Decodable {

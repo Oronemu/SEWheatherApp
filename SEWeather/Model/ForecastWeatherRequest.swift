@@ -24,51 +24,56 @@ struct ForecastWeatherRequest: DataRequest {
         "appid": Config.apikey
     ]
     
-    func decode(_ data: Data) throws -> ForecastWeatherResponse {
+    func decode(_ data: Data) throws -> ForecastWeather {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         decoder.dateDecodingStrategy = .secondsSince1970
-        let response = try decoder.decode(ForecastWeatherResponse.self, from: data)
+        let response = try decoder.decode(ForecastWeather.self, from: data)
         return response
     }
 }
 
-struct ForecastWeatherResponse: Decodable {
-    let timezone: String
+struct ForecastWeather: Decodable {
     let daily: [DailyWeatherReport]
-}
-
-struct DailyWeatherReport: Decodable {
-    let dt: Date
-    let sunrise: Date
-    let sunset: Date
-    let summary: String
-    let temp: TemperatureInfo
-    let feelsLike: FeelsLikeInfo
-    let pressure: Int
-    let windSpeed: Double
-    let weather: [WeatherType]
+    let alerts: [WeatherAlert]?
     
-    struct WeatherType: Decodable {
-        let main: String
+    struct WeatherAlert: Decodable {
+        let senderName: String
+        let event: String
         let description: String
-        let icon: String
     }
     
-    struct TemperatureInfo: Decodable {
-        let day: Double
-        let min: Double
-        let max: Double
-        let night: Double
-        let eve: Double
-        let morn: Double
-    }
-    
-    struct FeelsLikeInfo: Decodable {
-        let day: Double
-        let night: Double
-        let eve: Double
-        let morn: Double
+    struct DailyWeatherReport: Decodable {
+        let dt: Date
+        let sunrise: Date
+        let sunset: Date
+        let summary: String
+        let temp: TemperatureInfo
+        let feelsLike: FeelsLikeInfo
+        let pressure: Int
+        let windSpeed: Double
+        let weather: [WeatherType]
+        
+        struct WeatherType: Decodable {
+            let main: String
+            let description: String
+            let icon: String
+        }
+        
+        struct TemperatureInfo: Decodable {
+            let day: Double
+            let min: Double
+            let max: Double
+            let night: Double
+            let eve: Double
+            let morn: Double
+        }
+        
+        struct FeelsLikeInfo: Decodable {
+            let day: Double
+            let night: Double
+            let eve: Double
+            let morn: Double
+        }
     }
 }
-

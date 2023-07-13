@@ -34,7 +34,7 @@ class CurrentWeatherViewModel: ObservableObject {
     enum NetworkServiceState {
         case idle
         case loading
-        case success(CurrentWeatherResponse)
+        case success(CurrentWeather)
         case error(String)
     }
     

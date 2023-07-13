@@ -77,7 +77,7 @@ struct MainView: View {
 
 struct DetailWeatherView: View {
     
-    var weatherInfo: CurrentWeatherResponse
+    var weatherInfo: CurrentWeather
     
     var body: some View {
         VStack {

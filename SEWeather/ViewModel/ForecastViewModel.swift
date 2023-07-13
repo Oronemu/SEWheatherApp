@@ -32,7 +32,7 @@ class ForecastViewModel: ObservableObject {
     enum NetworkServiceState {
         case idle
         case loading
-        case success(ForecastWeatherResponse)
+        case success(ForecastWeather)
         case error(String)
     }
     
