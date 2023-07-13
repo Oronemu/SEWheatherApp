@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ForecastView: View {
     
-    @StateObject var viewModel: ForecastViewModel = .init(networkService: DefaultNetworkService(), locationService: CoreLocationService())
+    @StateObject var viewModel: ForecastViewModel = ForecastViewModel(networkManager: DefaultNetworkManager(), locationManager: CoreLocationManager())
     
     var body: some View {
         NavigationView {

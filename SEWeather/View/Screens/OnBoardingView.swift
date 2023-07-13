@@ -9,7 +9,7 @@ import SwiftUI
 
 struct OnBoardingView: View {
     
-    @StateObject var viewModel: OnBoardingViewModel = OnBoardingViewModel(locationService: CoreLocationService())
+    @StateObject var viewModel: OnBoardingViewModel = OnBoardingViewModel(locationManager: CoreLocationManager())
     @State private var buttonClicked: Bool = false
     
     var body: some View {

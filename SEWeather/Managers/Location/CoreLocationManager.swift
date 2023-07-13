@@ -8,7 +8,7 @@
 import CoreLocation
 import Dispatch
 
-enum LocationServiceStatus {
+enum LocationManagerStatus {
     case authorized(CLLocation?)
     case notDetermined
     case restricted
@@ -16,11 +16,11 @@ enum LocationServiceStatus {
     case disabled
 }
 
-class CoreLocationService: NSObject, LocationService {
+class CoreLocationManager: NSObject, LocationManager {
     
     private var locationManager = CLLocationManager()
     private var location: CLLocationCoordinate2D?
-    var completion: ((Result<LocationServiceStatus, Error>) -> Void)?
+    var completion: ((Result<LocationManagerStatus, Error>) -> Void)?
     
     func checkIfLocationServiceIsEnabled() {
         // TODO: Вынести это в отдельную очередь
@@ -52,12 +52,12 @@ class CoreLocationService: NSObject, LocationService {
     }
 }
 
-extension CoreLocationService: CLLocationManagerDelegate {
+extension CoreLocationManager: CLLocationManagerDelegate {
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         self.checkLocationAuthorization()
     }
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {        
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         self.location = locations.first?.coordinate
     }
 }

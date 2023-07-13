@@ -7,7 +7,7 @@
 
 import CoreLocation
 
-protocol LocationService {
-    var completion: ((Result<LocationServiceStatus, Error>) -> Void)? { get set }
+protocol LocationManager {
+    var completion: ((Result<LocationManagerStatus, Error>) -> Void)? { get set }
     func checkIfLocationServiceIsEnabled()
 }

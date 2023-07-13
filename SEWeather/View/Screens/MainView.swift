@@ -10,7 +10,7 @@ import MapKit
 
 struct MainView: View {
     
-    @StateObject var viewModel: CurrentWeatherViewModel = .init(networkService: DefaultNetworkService(), locationService: CoreLocationService())
+    @StateObject var viewModel: CurrentWeatherViewModel = .init(networkManager: DefaultNetworkManager(), locationManager: CoreLocationManager())
     
     var body: some View {
         NavigationView {

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class DefaultNetworkService: NetworkService {
+class DefaultNetworkManager: NetworkManager {
     
     private lazy var session: URLSession = {
         let config = URLSessionConfiguration.default

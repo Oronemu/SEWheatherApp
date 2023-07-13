@@ -12,13 +12,13 @@ import SwiftUI
 class OnBoardingViewModel: ObservableObject {
     
     @AppStorage("onBoardingIsShowed") private var onBoardingIsShowed = false
-    @Published var state: LocationServiceStatus = .notDetermined
+    @Published var state: LocationManagerStatus = .notDetermined
     
-    private var locationService: LocationService
+    private var locationManager: LocationManager
     
-    init(locationService: LocationService) {
-        self.locationService = locationService
-        self.locationService.completion = { [weak self] result in
+    init(locationManager: LocationManager) {
+        self.locationManager = locationManager
+        self.locationManager.completion = { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let status):
@@ -33,6 +33,6 @@ class OnBoardingViewModel: ObservableObject {
     }
     
     func checkIfLocationServiceIsEnabled() {
-        locationService.checkIfLocationServiceIsEnabled()
+        locationManager.checkIfLocationServiceIsEnabled()
     }
 }

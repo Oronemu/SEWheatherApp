@@ -9,16 +9,16 @@ import Foundation
 
 class ForecastViewModel: ObservableObject {
     
-    private let networkService: NetworkService
-    private var locationService: CoreLocationService
+    private let networkManager: NetworkManager
+    private var locationManager: CoreLocationManager
     
     @Published var networkState: NetworkServiceState = .idle
-    @Published var locationState: LocationServiceStatus?
+    @Published var locationState: LocationManagerStatus?
     
-    init(networkService: NetworkService, locationService: CoreLocationService) {
-        self.networkService = networkService
-        self.locationService = locationService
-        self.locationService.completion = { [weak self] result in
+    init(networkManager: NetworkManager, locationManager: CoreLocationManager) {
+        self.networkManager = networkManager
+        self.locationManager = locationManager
+        self.locationManager.completion = { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let status):
@@ -39,7 +39,7 @@ class ForecastViewModel: ObservableObject {
     func fetchWeather() {
         self.networkState = .loading
         var request = ForecastWeatherRequest()
-        self.locationService.checkIfLocationServiceIsEnabled()
+        self.locationManager.checkIfLocationServiceIsEnabled()
         
         if case .authorized(let location) = self.locationState {
             guard let coordinate = location?.coordinate else { return }
@@ -47,7 +47,7 @@ class ForecastViewModel: ObservableObject {
             request.queryItems["lon"] = "\(coordinate.longitude)"
         }
         
-        networkService.request(request) { [weak self] result in
+        networkManager.request(request) { [weak self] result in
             guard let self = self else { return }
 
             switch result {

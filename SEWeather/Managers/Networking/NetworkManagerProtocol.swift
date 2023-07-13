@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol NetworkService {
+protocol NetworkManager {
     func request<Request: DataRequest>(_ request: Request, completion: @escaping (Result<Request.Response, Error>) -> Void)
 }
 
