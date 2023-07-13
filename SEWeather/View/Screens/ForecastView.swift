@@ -55,11 +55,7 @@ struct DetailForecastView: View {
         VStack(spacing: 20) {
             ForEach(forecastWeather.daily, id: \.dt) { day in
                 HStack(spacing: 20) {
-                    Image(systemName: "cloud.sun.fill")
-                        .renderingMode(.original)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 100, height: 100)
+                    AsyncImage(withURL: "https://openweathermap.org/img/wn/\(day.weather.first?.icon ?? "")@2x.png")
                     VStack(alignment: .leading) {
                         Text(day.dt.toString(format: "EEEE"))
                             .font(.system(size: 25, weight: .semibold))

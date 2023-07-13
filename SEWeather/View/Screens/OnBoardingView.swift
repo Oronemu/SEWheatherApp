@@ -10,6 +10,7 @@ import SwiftUI
 struct OnBoardingView: View {
     
     @StateObject var viewModel: OnBoardingViewModel = OnBoardingViewModel(locationService: CoreLocationService())
+    @State private var buttonClicked: Bool = false
     
     var body: some View {
         ZStack {
@@ -41,6 +42,7 @@ struct OnBoardingView: View {
                         VStack {
                             Button {
                                 viewModel.checkIfLocationServiceIsEnabled()
+                                buttonClicked = true
                             } label: {
                                 HStack {
                                     Image(systemName: "location.fill")
@@ -66,6 +68,9 @@ struct OnBoardingView: View {
                 .multilineTextAlignment(.center)
             }
             .padding()
+        }
+        .onAppear() {
+            if buttonClicked { viewModel.checkIfLocationServiceIsEnabled() }
         }
     }
 }

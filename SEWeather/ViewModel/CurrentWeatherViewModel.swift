@@ -27,6 +27,7 @@ class CurrentWeatherViewModel: ObservableObject {
     
     @Published var networkState: NetworkServiceState = .idle
     @Published var locationState: LocationServiceStatus?
+    @Published var advice: String = ""
 
     enum NetworkServiceState {
         case idle
@@ -50,6 +51,18 @@ class CurrentWeatherViewModel: ObservableObject {
             case .success(let response):
                 DispatchQueue.main.async {
                     self.networkState = .success(response)
+                    switch response.main.temp {
+                    case -30 ... -15:
+                        self.advice = "оч холодно"
+                    case -14 ... 0:
+                        self.advice = "менее холодно"
+                    case 1 ... 15:
+                        self.advice = "прохладно"
+                    case 16 ... 30:
+                        self.advice = "тепло :)"
+                    default:
+                        return
+                    }
                 }
             case .failure(let error):
                 DispatchQueue.main.async {

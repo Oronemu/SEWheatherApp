@@ -30,7 +30,32 @@ struct MainView: View {
                                     .frame(width: geometry.size.width - 40)
                                     .frame(minHeight: geometry.size.height)
                             case .success(let currentWeather):
-                                DetailWeatherView(weatherInfo: currentWeather)
+                                VStack {
+                                    Text("\(currentWeather.name), \(currentWeather.sys.country)")
+                                        .font(.system(size: 40, weight: .medium))
+                                        .foregroundColor(.white)
+
+                                    HStack {
+                                        AsyncImage(withURL: "https://openweathermap.org/img/wn/\(currentWeather.weather.first?.icon ?? "")@2x.png")
+                                        VStack(alignment: .center) {
+                                            Text("\(Int(currentWeather.main.temp))°C")
+                                                .font(.system(size: 60, weight: .medium))
+                                            Text(currentWeather.weather.first?.description ?? "")
+                                        }
+                                        .padding(.leading, 20)
+                                        .foregroundColor(.white)
+                                    }
+                                    
+                                    Text(viewModel.advice)
+                                        .multilineTextAlignment(.leading)
+                                        .foregroundColor(.white)
+                                        .font(.system(size: 20))
+                                        .frame(maxWidth: .infinity)
+                                        .padding(15)
+                                        .background(Color(.black).opacity(0.1))
+                                        .clipShape(RoundedRectangle(cornerRadius: 15))
+                                    DetailWeatherView(weatherInfo: currentWeather)
+                                }
                             case .error(let error):
                                 ErrorView(error: error)
                                     .frame(width: geometry.size.width - 40)
@@ -54,34 +79,6 @@ struct DetailWeatherView: View {
     
     var body: some View {
         VStack {
-            Text("\(weatherInfo.name), \(weatherInfo.sys.country)")
-                .font(.system(size: 40, weight: .medium))
-                .foregroundColor(.white)
-
-            HStack {
-                Image(systemName: "cloud.sun.fill")
-                    .renderingMode(.original)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 150, height: 150)
-                VStack(alignment: .center) {
-                    Text("\(Int(weatherInfo.main.temp))°C")
-                        .font(.system(size: 60, weight: .medium))
-                    Text(weatherInfo.weather.first?.description ?? "")
-                }
-                .padding(.leading, 20)
-                .foregroundColor(.white)
-            }
-            
-            Text("It seems to be cool outside, it is recommended to dress warmly so as not to freeze")
-                .multilineTextAlignment(.leading)
-                .foregroundColor(.white)
-                .font(.system(size: 20))
-                .frame(maxWidth: .infinity)
-                .padding(15)
-                .background(Color(.black).opacity(0.1))
-                .clipShape(RoundedRectangle(cornerRadius: 15))
-
             HStack {
                 VStack(alignment: .leading) {
                     WeatherDetailCell("wind", title: "Wind", value: "\(weatherInfo.wind.speed) mps")
@@ -118,8 +115,8 @@ struct DetailWeatherView: View {
                     .bold()
                     .font(.title3)
                 Text(value)
-                    .lineLimit(1)
             }
+            .lineLimit(1)
         }
         .padding(8)
         .frame(maxWidth: .infinity, alignment: .leading)
