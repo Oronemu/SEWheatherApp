@@ -10,7 +10,7 @@ import Foundation
 struct CurrentWeatherRequest: DataRequest {    
     var url: String {
         let baseURL: String = "https://api.openweathermap.org"
-        let path: String = "/data/3.0/onecall"
+        let path: String = "/data/2.5/weather"
         return baseURL + path
     }
     
@@ -20,7 +20,6 @@ struct CurrentWeatherRequest: DataRequest {
     
     var queryItems: [String : String] =  [
         "units": "metric",
-        "exclude": "hourly",
         "appid": Config.apikey
     ]
     
@@ -34,25 +33,34 @@ struct CurrentWeatherRequest: DataRequest {
 }
 
 struct CurrentWeatherResponse: Decodable {
-    let timezone: String
-    let current: CurrentWeatherReport
-}
-
-struct CurrentWeatherReport: Decodable {
     let dt: Date
-    let sunrise: Date
-    let sunset: Date
-    let temp: Double
-    let humidity: Int
-    let uvi: Double
-    let feelsLike: Double
-    let pressure: Int
-    let windSpeed: Double
-    let weather: [WeatherType]
-    
-    struct WeatherType: Decodable {
+    let name: String
+    let timezone: Int
+    let weather: [Weather]
+    let main: Main
+    let sys: Sys
+    let wind: Wind
+
+    struct Main: Decodable {
+        let temp: Double
+        let tempMin: Double
+        let tempMax: Double
+        let pressure: Int
+        let humidity: Int
+    }
+
+    struct Weather: Decodable {
         let main: String
         let description: String
+        let icon: String
+    }
+    
+    struct Sys: Decodable {
+        let country: String
+    }
+    
+    struct Wind: Decodable {
+        let speed: Double
     }
 }
 

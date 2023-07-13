@@ -37,7 +37,6 @@ struct ForecastWeatherRequest: DataRequest {
 
 struct ForecastWeatherResponse: Decodable {
     let timezone: String
-    let current: CurrentWeatherReport
     let daily: [DailyWeatherReport]
 }
 

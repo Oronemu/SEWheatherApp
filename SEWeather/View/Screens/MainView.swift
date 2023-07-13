@@ -54,10 +54,8 @@ struct DetailWeatherView: View {
     
     var body: some View {
         VStack {
-            Text("Kemerovo")
+            Text("\(weatherInfo.name), \(weatherInfo.sys.country)")
                 .font(.system(size: 40, weight: .medium))
-                .foregroundColor(.white)
-            Text(weatherInfo.timezone)
                 .foregroundColor(.white)
 
             HStack {
@@ -66,10 +64,10 @@ struct DetailWeatherView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 150, height: 150)
-                VStack(alignment: .leading) {
-                    Text("\(Int(weatherInfo.current.temp))°C")
+                VStack(alignment: .center) {
+                    Text("\(Int(weatherInfo.main.temp))°C")
                         .font(.system(size: 60, weight: .medium))
-                    Text(weatherInfo.current.weather.first?.description ?? "")
+                    Text(weatherInfo.weather.first?.description ?? "")
                 }
                 .padding(.leading, 20)
                 .foregroundColor(.white)
@@ -86,15 +84,15 @@ struct DetailWeatherView: View {
 
             HStack {
                 VStack(alignment: .leading) {
-                    WeatherDetailCell("wind", title: "Wind", value: "\(weatherInfo.current.windSpeed) mps")
-                    WeatherDetailCell("barometer", title: "Pressure", value: "\(weatherInfo.current.humidity) mmHg")
+                    WeatherDetailCell("wind", title: "Wind", value: "\(weatherInfo.wind.speed) mps")
+                    WeatherDetailCell("barometer", title: "Pressure", value: "\(weatherInfo.main.pressure) mmHg")
                 }
                 
                 Spacer()
                 
                 VStack(alignment: .leading) {
-                    WeatherDetailCell("humidity.fill", title: "Humidity", value: "\(weatherInfo.current.humidity)%")
-                    WeatherDetailCell("sun.max.fill", title: "UV Index", value: "\(weatherInfo.current.uvi)")
+                    WeatherDetailCell("humidity.fill", title: "Humidity", value: "\(weatherInfo.main.humidity)%")
+                    WeatherDetailCell("thermometer.sun.fill", title: "Temperature", value: "\(Int(weatherInfo.main.tempMin))°C - \(Int(weatherInfo.main.tempMax))°C")
                 }
             }
             .foregroundColor(.white)

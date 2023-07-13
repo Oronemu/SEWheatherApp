@@ -17,13 +17,13 @@ struct ContentView: View {
             MainView()
                 .tabItem {
                     Image(systemName: "location.fill")
-                    Text("Главная")
+                    Text("Home")
                 }
                 .tag(1)
             ForecastView()
                 .tabItem {
                     Image(systemName: "cloud.sun.rain.fill")
-                    Text("Прогноз")
+                    Text("Forecast")
                 }
                 .tag(2)
         }
