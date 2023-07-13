@@ -10,13 +10,16 @@ import CoreLocation
 import SwiftUI
 
 class OnBoardingViewModel: ObservableObject {
+    
     @AppStorage("onBoardingIsShowed") private var onBoardingIsShowed = false
+    @Published var state: LocationServiceStatus = .notDetermined
     
     private var locationService: LocationService
     
     init(locationService: LocationService) {
         self.locationService = locationService
-        self.locationService.completion = { result in
+        self.locationService.completion = { [weak self] result in
+            guard let self = self else { return }
             switch result {
             case .success(let status):
                 self.state = status
@@ -28,8 +31,6 @@ class OnBoardingViewModel: ObservableObject {
             }
         }
     }
-    
-    @Published var state: LocationServiceStatus = .notDetermined
     
     func checkIfLocationServiceIsEnabled() {
         locationService.checkIfLocationServiceIsEnabled()

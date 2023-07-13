@@ -19,13 +19,13 @@ class DefaultNetworkService: NetworkService {
         
         guard var urlComponent = URLComponents(string: request.url) else {
             let error = NSError(domain: "InvalidEndpoint", code: 404)
-            
-            return completion(.failure(error))
+            completion(.failure(error))
+            return
         }
         
         var queryItems: [URLQueryItem] = []
         
-        request.queryItems.forEach { key, value in
+        for (key, value) in request.queryItems {
             let urlQueryItem = URLQueryItem(name: key, value: value)
             urlComponent.queryItems?.append(urlQueryItem)
             queryItems.append(urlQueryItem)
@@ -35,8 +35,8 @@ class DefaultNetworkService: NetworkService {
         
         guard let url = urlComponent.url else {
             let error = NSError(domain: "InvalidEndpoint", code: 404)
-            
-            return completion(.failure(error))
+            completion(.failure(error))
+            return
         }
         
         var urlRequest = URLRequest(url: url)
@@ -45,19 +45,25 @@ class DefaultNetworkService: NetworkService {
         
         session.dataTask(with: urlRequest) { data, response, error in
             if let error {
-                return completion(.failure(error))
+                completion(.failure(error))
+                return
             }
             
-            guard let response = response else {
-                return completion(.failure(NSError()))
+            guard response != nil else {
+                let error = NSError(domain: "InvalidResponse", code: 400)
+                completion(.failure(error))
+                return
             }
             
             guard let data = data else {
-                return completion(.failure(NSError()))
+                let error = NSError(domain: "InvalidData", code: 400)
+               completion(.failure(error))
+                return
             }
             
             do {
-                try completion(.success(request.decode(data)))
+                let decodedResponse = try request.decode(data)
+                completion(.success(decodedResponse))
             } catch let error as NSError {
                 completion(.failure(error))
             }

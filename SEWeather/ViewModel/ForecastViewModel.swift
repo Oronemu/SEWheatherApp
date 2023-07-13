@@ -12,10 +12,14 @@ class ForecastViewModel: ObservableObject {
     private let networkService: NetworkService
     private var locationService: CoreLocationService
     
+    @Published var networkState: NetworkServiceState = .idle
+    @Published var locationState: LocationServiceStatus?
+    
     init(networkService: NetworkService, locationService: CoreLocationService) {
         self.networkService = networkService
         self.locationService = locationService
-        self.locationService.completion = { result in
+        self.locationService.completion = { [weak self] result in
+            guard let self = self else { return }
             switch result {
             case .success(let status):
                 self.locationState = status
@@ -24,9 +28,6 @@ class ForecastViewModel: ObservableObject {
             }
         }
     }
-    
-    @Published var networkState: NetworkServiceState = .idle
-    @Published var locationState: LocationServiceStatus?
 
     enum NetworkServiceState {
         case idle
@@ -39,12 +40,16 @@ class ForecastViewModel: ObservableObject {
         self.networkState = .loading
         var request = ForecastWeatherRequest()
         self.locationService.checkIfLocationServiceIsEnabled()
+        
         if case .authorized(let location) = self.locationState {
-            guard let location = location?.coordinate else { return }
-            request.queryItems["lat"] = "\(location.latitude)"
-            request.queryItems["lon"] = "\(location.longitude)"
+            guard let coordinate = location?.coordinate else { return }
+            request.queryItems["lat"] = "\(coordinate.latitude)"
+            request.queryItems["lon"] = "\(coordinate.longitude)"
         }
-        networkService.request(request) { result in
+        
+        networkService.request(request) { [weak self] result in
+            guard let self = self else { return }
+
             switch result {
             case .success(let response):
                 DispatchQueue.main.async {

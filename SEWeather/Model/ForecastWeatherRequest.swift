@@ -7,9 +7,7 @@
 
 import Foundation
 
-struct ForecastWeatherRequest: DataRequest {
-    private let apiKey: String = "052498d28e3fd8ab933bfb1b9b183e90"
-    
+struct ForecastWeatherRequest: DataRequest {    
     var url: String {
         let baseURL: String = "https://api.openweathermap.org"
         let path: String = "/data/3.0/onecall"

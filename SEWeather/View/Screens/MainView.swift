@@ -37,10 +37,11 @@ struct MainView: View {
 
                                     HStack {
                                         AsyncImage(withURL: "https://openweathermap.org/img/wn/\(currentWeather.weather.first?.icon ?? "")@2x.png")
-                                        VStack(alignment: .center) {
+                                        VStack(alignment: .leading) {
                                             Text("\(Int(currentWeather.main.temp))°C")
                                                 .font(.system(size: 60, weight: .medium))
                                             Text(currentWeather.weather.first?.description ?? "")
+                                                .multilineTextAlignment(.leading)
                                         }
                                         .padding(.leading, 20)
                                         .foregroundColor(.white)
@@ -54,6 +55,7 @@ struct MainView: View {
                                         .padding(15)
                                         .background(Color(.black).opacity(0.1))
                                         .clipShape(RoundedRectangle(cornerRadius: 15))
+                                    
                                     DetailWeatherView(weatherInfo: currentWeather)
                                 }
                             case .error(let error):

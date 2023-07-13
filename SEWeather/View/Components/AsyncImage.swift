@@ -17,13 +17,13 @@ struct AsyncImage: View {
     }
 
     var body: some View {
-            Image(uiImage: image)
-                .renderingMode(.original)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 150, height: 150)
-                .onReceive(imageLoader.didChange) { data in
+        Image(uiImage: image)
+            .renderingMode(.original)
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .frame(width: 150, height: 150)
+            .onReceive(imageLoader.didChange) { data in
                 self.image = UIImage(data: data) ?? UIImage()
-        }
+            }
     }
 }
