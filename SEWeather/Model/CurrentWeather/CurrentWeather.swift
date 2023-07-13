@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import CoreData
 
 struct CurrentWeather: Decodable {
     let dt: Date
@@ -28,8 +27,14 @@ struct CurrentWeather: Decodable {
 
     struct Weather: Decodable {
         let main: String
-        let description: String
+        let weatherDescription: String
         let icon: String
+        
+        private enum CodingKeys: String, CodingKey {
+            case main
+            case weatherDescription = "description"
+            case icon
+        }
     }
     
     struct Sys: Decodable {

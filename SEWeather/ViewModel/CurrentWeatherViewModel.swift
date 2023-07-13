@@ -6,22 +6,24 @@
 //
 
 import Foundation
+import CoreData
 
 class CurrentWeatherViewModel: ObservableObject {
     
     private let networkManager: NetworkManager
     private var locationManager: LocationManager
-    
-    @Published var networkState: NetworkServiceState = .idle
+    private let context = CoreDataManager.shared.container.viewContext
+        
+    @Published var networkState: NetworkState = .idle
     @Published var locationState: LocationManagerStatus?
     @Published var advice: String = ""
+    @Published var currentWeather: CurrentWeatherEntity?
     
     init(networkManager: NetworkManager, locationManager: LocationManager) {
         self.networkManager = networkManager
         self.locationManager = locationManager
         self.locationManager.completion = { [weak self] result in
             guard let self = self else { return }
-            
             switch result {
             case .success(let status):
                 self.locationState = status
@@ -31,14 +33,75 @@ class CurrentWeatherViewModel: ObservableObject {
         }
     }
     
-    enum NetworkServiceState {
+    enum NetworkState {
         case idle
         case loading
-        case success(CurrentWeather)
+        case success
         case error(String)
     }
+      
+    private func saveWeatherData(weather: CurrentWeather) {
+        guard let weatherEntity = NSEntityDescription.entity(forEntityName: "CurrentWeatherEntity", in: context) else { return }
+        
+        let entityObject = CurrentWeatherEntity(entity: weatherEntity, insertInto: context)
+        
+        entityObject.dt = weather.dt
+        entityObject.name = weather.name
+        entityObject.timezone = Int16(weather.timezone)
+        
+        guard let entity = NSEntityDescription.entity(forEntityName: "WeatherEntity", in: context) else { return }
+        let weatherSet = NSMutableSet()
+        
+        for weatherData in weather.weather {
+            let weatherEntity = WeatherEntity(entity: entity, insertInto: context)
+            weatherEntity.main = weatherData.main
+            weatherEntity.weatherDescription = weatherData.weatherDescription
+            weatherEntity.icon = weatherData.icon
+            
+            weatherSet.add(weatherEntity)
+        }
+        entityObject.weather = weatherSet
+        
+        let mainEntity = MainEntity(context: context)
+        mainEntity.temp = weather.main.temp
+        mainEntity.feelsLike = weather.main.feelsLike
+        mainEntity.tempMin = weather.main.tempMin
+        mainEntity.tempMax = weather.main.tempMax
+        mainEntity.pressure = Int16(weather.main.pressure)
+        mainEntity.humidity = Int16(weather.main.humidity)
+        entityObject.main = mainEntity
+        
+        let sysEntity = SysEntity(context: context)
+        sysEntity.country = weather.sys.country
+        entityObject.sys = sysEntity
+        
+        let windEntity = WindEntity(context: context)
+        windEntity.speed = weather.wind.speed
+        
+        do {
+            try context.save()
+        } catch {
+            print("error")
+        }
+        
+        self.loadData()
+    }
     
-    func fetchWeather() {
+    func loadData() {
+        let request = NSFetchRequest<CurrentWeatherEntity>(entityName: "CurrentWeatherEntity")
+        
+        do {
+            currentWeather = try context.fetch(request).first
+            if currentWeather == nil {
+                self.fetchWeather()
+            }
+            self.networkState = .success
+        } catch let error {
+            self.networkState = .error(error.localizedDescription)
+        }
+    }
+    
+    private func fetchWeather() {
         self.networkState = .loading
         var request = CurrentWeatherRequest()
         self.locationManager.checkIfLocationServiceIsEnabled()
@@ -52,8 +115,9 @@ class CurrentWeatherViewModel: ObservableObject {
         networkManager.request(request) { result in
             switch result {
             case .success(let response):
+                self.saveWeatherData(weather: response)
                 DispatchQueue.main.async {
-                    self.networkState = .success(response)
+                    self.networkState = .success
                     self.updateAdvice(for: response.main.temp)
                 }
             case .failure(let error):

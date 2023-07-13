@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		983AD8662A602180003BCE3B /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 983AD8642A602180003BCE3B /* Model.xcdatamodeld */; };
+		983AD8752A603C1A003BCE3B /* ModelData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 983AD8732A603C1A003BCE3B /* ModelData.xcdatamodeld */; };
 		98650C472A6009DF0003CDC8 /* CurrentWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98650C462A6009DF0003CDC8 /* CurrentWeather.swift */; };
 		9868AF992A5EB34100DC298B /* OnBoardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9868AF982A5EB34100DC298B /* OnBoardingViewModel.swift */; };
 		98B607A42A5DF2A800DECFFE /* CurrentWeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B607A32A5DF2A800DECFFE /* CurrentWeatherViewModel.swift */; };
@@ -39,7 +39,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		983AD8652A602180003BCE3B /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		983AD8742A603C1A003BCE3B /* ModelData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ModelData.xcdatamodel; sourceTree = "<group>"; };
 		98650C462A6009DF0003CDC8 /* CurrentWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeather.swift; sourceTree = "<group>"; };
 		9868AF982A5EB34100DC298B /* OnBoardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewModel.swift; sourceTree = "<group>"; };
 		98B607A32A5DF2A800DECFFE /* CurrentWeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherViewModel.swift; sourceTree = "<group>"; };
@@ -179,6 +179,7 @@
 			children = (
 				98CB6CA82A5EA21C00F423C3 /* Info.plist */,
 				98D411162A5DAA9A00BCEE1F /* SEWeatherApp.swift */,
+				983AD8732A603C1A003BCE3B /* ModelData.xcdatamodeld */,
 				98D411352A5DC24600BCEE1F /* Managers */,
 				98B607AF2A5E412700DECFFE /* Utils */,
 				98D4112B2A5DAE9000BCEE1F /* Model */,
@@ -186,7 +187,6 @@
 				98D4112A2A5DAE8600BCEE1F /* ViewModel */,
 				98D4111A2A5DAA9D00BCEE1F /* Assets.xcassets */,
 				98D4111C2A5DAA9D00BCEE1F /* Preview Content */,
-				983AD8642A602180003BCE3B /* Model.xcdatamodeld */,
 			);
 			path = SEWeather;
 			sourceTree = "<group>";
@@ -323,7 +323,6 @@
 				98650C472A6009DF0003CDC8 /* CurrentWeather.swift in Sources */,
 				98D411382A5DC27700BCEE1F /* DataRequestProtocol.swift in Sources */,
 				98CB6CA72A5E9F4300F423C3 /* CoreLocationManager.swift in Sources */,
-				983AD8662A602180003BCE3B /* Model.xcdatamodeld in Sources */,
 				98F32FEB2A5FD32B00DD10E5 /* AsyncImage.swift in Sources */,
 				98CA00EB2A60145100658017 /* CoreDataManager.swift in Sources */,
 				98B607A82A5E093300DECFFE /* ForecastViewModel.swift in Sources */,
@@ -343,6 +342,7 @@
 				98F32FE72A5F629600DD10E5 /* Config.swift in Sources */,
 				98B607A62A5E057C00DECFFE /* ForecastWeatherRequest.swift in Sources */,
 				98D411342A5DB28200BCEE1F /* ForecastView.swift in Sources */,
+				983AD8752A603C1A003BCE3B /* ModelData.xcdatamodeld in Sources */,
 				98CB6CA52A5E9E3C00F423C3 /* LocationManagerProtocol.swift in Sources */,
 				98B607AE2A5E38FB00DECFFE /* CircullarLoadingView.swift in Sources */,
 			);
@@ -572,13 +572,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		983AD8642A602180003BCE3B /* Model.xcdatamodeld */ = {
+		983AD8732A603C1A003BCE3B /* ModelData.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				983AD8652A602180003BCE3B /* Model.xcdatamodel */,
+				983AD8742A603C1A003BCE3B /* ModelData.xcdatamodel */,
 			);
-			currentVersion = 983AD8652A602180003BCE3B /* Model.xcdatamodel */;
-			path = Model.xcdatamodeld;
+			currentVersion = 983AD8742A603C1A003BCE3B /* ModelData.xcdatamodel */;
+			path = ModelData.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

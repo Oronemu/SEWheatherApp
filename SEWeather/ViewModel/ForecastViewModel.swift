@@ -11,7 +11,7 @@ class ForecastViewModel: ObservableObject {
     
     private let networkManager: NetworkManager
     private var locationManager: CoreLocationManager
-    
+        
     @Published var networkState: NetworkServiceState = .idle
     @Published var locationState: LocationManagerStatus?
     

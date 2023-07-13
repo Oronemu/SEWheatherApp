@@ -3,4 +3,69 @@
    uuid = "E63637A6-EC0B-405B-BFB6-A2CE2926A6F1"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "591EFD2D-12C1-4E95-8CE3-54BD51C86700"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SEWeather/Entities/CurrentWeather/CurrentWeatherEntity.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
+            landmarkName = "WeatherEntity"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "591EFD2D-12C1-4E95-8CE3-54BD51C86700 - eae2f65a7cd91af3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SEWeather.WeatherEntity.__allocating_init(entity: __C.NSEntityDescription, insertInto: Swift.Optional&lt;__C.NSManagedObjectContext&gt;) -&gt; SEWeather.WeatherEntity"
+                  moduleName = "SEWeather"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ivanrovkov/Desktop/TestTask/SEWeather/SEWeather/Entities/CurrentWeather/CurrentWeatherEntity.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "27">
+               </Location>
+               <Location
+                  uuid = "591EFD2D-12C1-4E95-8CE3-54BD51C86700 - d941fd5072326d77"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SEWeather.WeatherEntity.init(entity: __C.NSEntityDescription, insertInto: Swift.Optional&lt;__C.NSManagedObjectContext&gt;) -&gt; SEWeather.WeatherEntity"
+                  moduleName = "SEWeather"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ivanrovkov/Desktop/TestTask/SEWeather/SEWeather/Entities/CurrentWeather/CurrentWeatherEntity.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "121"
+                  endingLineNumber = "121"
+                  offsetFromSymbolStart = "0">
+               </Location>
+               <Location
+                  uuid = "591EFD2D-12C1-4E95-8CE3-54BD51C86700 - 4b6313ee68548c4d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SEWeather.WeatherEntity.__deallocating_deinit"
+                  moduleName = "SEWeather"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ivanrovkov/Desktop/TestTask/SEWeather/SEWeather/Entities/CurrentWeather/CurrentWeatherEntity.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
